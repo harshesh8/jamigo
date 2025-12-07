@@ -32,7 +32,7 @@ export const TrackRow: React.FC<TrackRowProps> = ({ track, height = 96 }) => {
          <div className="flex flex-col items-center gap-2">
             <button 
                 onClick={() => setIsMuted(!isMuted)}
-                className={`p-1.5 rounded-md ${isMuted ? 'bg-accent-primary text-bg-ink' : 'bg-bg-slate text-text-dim'}`}
+                className={`p-1.5 rounded-md ${isMuted ? 'bg-primary text-bg-ink' : 'bg-bg-slate text-text-dim'}`}
             >
                 {isMuted ? <VolumeX size={16} /> : <Volume2 size={16} />}
             </button>

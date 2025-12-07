@@ -18,9 +18,7 @@ export default {
           soft: '#E4E4E6',
           dim: '#8D8D92',
         },
-        accent: {
-          primary: '#FFBD1F',
-        },
+        primary: '#FFBD1F',
         track: {
           pink: '#FF66D4',
           blue: '#52D0FF',

@@ -68,7 +68,7 @@ export const Timeline: React.FC = () => {
                 
                 {/* Playhead Triangle Handle */}
                 <div 
-                   className="absolute top-0 w-0 h-0 border-l-[6px] border-l-transparent border-r-[6px] border-r-transparent border-t-[8px] border-t-accent-primary transform -translate-x-1/2 transition-transform duration-75"
+                   className="absolute top-0 w-0 h-0 border-l-[6px] border-l-transparent border-r-[6px] border-r-transparent border-t-[8px] border-t-primary transform -translate-x-1/2 transition-transform duration-75"
                    style={{ left: state.currentTime * state.zoom }}
                 />
             </div>
@@ -78,7 +78,7 @@ export const Timeline: React.FC = () => {
         <div className="flex-1 relative">
              {/* Global Playhead Line */}
              <div 
-                className="absolute top-0 bottom-0 w-[2px] bg-accent-primary z-30 pointer-events-none transition-transform duration-75"
+                className="absolute top-0 bottom-0 w-[2px] bg-primary z-30 pointer-events-none transition-transform duration-75"
                 style={{ 
                     left: (state.currentTime * state.zoom) + 96, // Offset by header width (w-24 = 96px)
                     // Wait, playhead should be inside the right pane?
@@ -90,7 +90,7 @@ export const Timeline: React.FC = () => {
              {/* Playhead Overlay Container (Right side only) */}
              <div className="absolute top-0 bottom-0 left-24 right-0 pointer-events-none overflow-visible">
                 <div 
-                    className="absolute top-0 bottom-0 w-[2px] bg-accent-primary shadow-[0_0_10px_rgba(255,189,31,0.5)]"
+                    className="absolute top-0 bottom-0 w-[2px] bg-primary shadow-[0_0_10px_rgba(255,189,31,0.5)]"
                     style={{ left: state.currentTime * state.zoom }}
                 ></div>
              </div>
