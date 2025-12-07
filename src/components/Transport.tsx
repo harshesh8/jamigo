@@ -29,7 +29,7 @@ export const Transport: React.FC = () => {
     <div className="h-24 bg-bg-graphite border-t border-bg-slate flex items-center justify-between px-4 pb-safe shrink-0 z-30">
       <div className="flex items-center gap-4">
         <button 
-          className="w-14 h-14 rounded-full bg-accent-mint text-bg-ink flex items-center justify-center shadow-lg shadow-accent-mint/20 active:scale-95 transition-transform"
+          className="w-14 h-14 rounded-full bg-accent-primary text-bg-ink flex items-center justify-center shadow-lg shadow-accent-primary/20 active:scale-95 transition-transform"
           onClick={togglePlay}
         >
           {state.isPlaying ? <Pause size={24} fill="currentColor" /> : <Play size={24} fill="currentColor" className="ml-1" />}
@@ -55,7 +55,7 @@ export const Transport: React.FC = () => {
           <Plus size={24} />
           <input 
             type="file" 
-            accept="audio/*" 
+            accept="audio/*,.m4a,audio/mp4,audio/x-m4a,audio/mpeg,audio/wav"
             multiple 
             className="hidden" 
             onChange={handleFileChange}
@@ -65,4 +65,3 @@ export const Transport: React.FC = () => {
     </div>
   );
 };
-

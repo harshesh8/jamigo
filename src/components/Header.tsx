@@ -37,7 +37,7 @@ export const Header: React.FC = () => {
         
         <button 
           onClick={() => exportMix()}
-          className="bg-accent-mint text-bg-ink font-bold px-4 py-2 rounded-xl flex items-center gap-2 text-sm hover:brightness-110 active:scale-95 transition-all shadow-lg shadow-accent-mint/20"
+          className="bg-accent-primary text-bg-ink font-bold px-4 py-2 rounded-xl flex items-center gap-2 text-sm hover:brightness-110 active:scale-95 transition-all shadow-lg shadow-accent-primary/20"
         >
           <Download size={16} />
           <span className="hidden sm:inline">Export</span>

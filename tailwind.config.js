@@ -19,7 +19,7 @@ export default {
           dim: '#8D8D92',
         },
         accent: {
-          mint: '#78FBA6',
+          primary: '#FFBD1F',
         },
         track: {
           pink: '#FF66D4',
@@ -44,4 +44,3 @@ export default {
   },
   plugins: [],
 }
-

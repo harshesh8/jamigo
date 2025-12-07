@@ -25,21 +25,23 @@ export const TrackRow: React.FC<TrackRowProps> = ({ track, height = 96 }) => {
         style={{ height }}
     >
       {/* Sticky Header */}
-      <div className="sticky left-0 z-30 w-24 bg-bg-graphite border-r border-bg-slate flex flex-col justify-center px-2 gap-1 shadow-md">
-         <div className="text-xs font-bold text-text-high truncate">{track.name}</div>
-         <div className="flex items-center gap-1">
+      <div className="sticky left-0 z-30 w-16 bg-bg-graphite border-r border-bg-slate flex flex-col justify-center items-center px-1 gap-2 shadow-md">
+         {/* Name removed as requested */}
+         <div className="w-1 h-8 rounded-full" style={{ backgroundColor: track.color }}></div>
+         
+         <div className="flex flex-col items-center gap-2">
             <button 
                 onClick={() => setIsMuted(!isMuted)}
-                className={`p-1.5 rounded-md ${isMuted ? 'bg-accent-mint text-bg-ink' : 'bg-bg-slate text-text-dim'}`}
+                className={`p-1.5 rounded-md ${isMuted ? 'bg-accent-primary text-bg-ink' : 'bg-bg-slate text-text-dim'}`}
             >
-                {isMuted ? <VolumeX size={14} /> : <Volume2 size={14} />}
+                {isMuted ? <VolumeX size={16} /> : <Volume2 size={16} />}
             </button>
-            <div className="w-2 h-8 rounded-full" style={{ backgroundColor: track.color }}></div>
+            
             <button 
                 onClick={handleDelete}
-                className="p-1.5 rounded-md hover:bg-red-500/20 text-text-dim hover:text-red-500 ml-auto opacity-0 group-hover:opacity-100 transition-opacity"
+                className="p-1.5 rounded-md hover:bg-red-500/20 text-text-dim hover:text-red-500 transition-opacity"
             >
-                <Trash2 size={14} />
+                <Trash2 size={16} />
             </button>
          </div>
       </div>
