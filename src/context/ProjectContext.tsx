@@ -2,7 +2,6 @@ import React, { createContext, useContext, useReducer, useRef, useEffect } from 
 import type { Clip, Track, ProjectState, Action } from '../types';
 import { getAudioContext, decodeAudio, getTrackHexColor, renderProject } from '../utils/audio';
 
-// ... existing code ...
 const generateId = () => Math.random().toString(36).substring(2, 9);
 
 const initialState: ProjectState = {
@@ -13,7 +12,6 @@ const initialState: ProjectState = {
   zoom: 50,
 };
 
-// ... reducer ...
 const projectReducer = (state: ProjectState, action: Action): ProjectState => {
   switch (action.type) {
     case 'ADD_TRACK':
@@ -66,6 +64,7 @@ interface ProjectContextType {
   pause: () => void;
   seek: (time: number) => void;
   exportMix: () => Promise<void>;
+  initializeAudio: () => void;
 }
 
 const ProjectContext = createContext<ProjectContextType | undefined>(undefined);
@@ -82,6 +81,20 @@ export const ProjectProvider: React.FC<{ children: React.ReactNode }> = ({ child
       if (animationFrameRef.current) cancelAnimationFrame(animationFrameRef.current);
     };
   }, []);
+
+  const initializeAudio = () => {
+      // Force AudioContext to resume/unlock on user interaction
+      const ctx = getAudioContext();
+      if (ctx.state === 'suspended') {
+          ctx.resume();
+      }
+      // Create and play a silent buffer to fully unlock iOS audio
+      const buffer = ctx.createBuffer(1, 1, 22050);
+      const source = ctx.createBufferSource();
+      source.buffer = buffer;
+      source.connect(ctx.destination);
+      source.start(0);
+  };
 
   const stopAudio = () => {
     activeSources.current.forEach(source => {
@@ -161,6 +174,9 @@ export const ProjectProvider: React.FC<{ children: React.ReactNode }> = ({ child
 
   const addTrackFromFile = async (file: File) => {
     try {
+      // Ensure audio context is ready when user interacts to import
+      initializeAudio();
+      
       const buffer = await decodeAudio(file);
       const trackId = generateId();
       const clipId = generateId();
@@ -210,7 +226,7 @@ export const ProjectProvider: React.FC<{ children: React.ReactNode }> = ({ child
   };
 
   return (
-    <ProjectContext.Provider value={{ state, dispatch, addTrackFromFile, play, pause, seek, exportMix }}>
+    <ProjectContext.Provider value={{ state, dispatch, addTrackFromFile, play, pause, seek, exportMix, initializeAudio }}>
       {children}
     </ProjectContext.Provider>
   );

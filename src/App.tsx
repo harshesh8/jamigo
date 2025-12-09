@@ -7,9 +7,11 @@ import { Upload } from 'lucide-react';
 import logo from './assets/logo.png';
 
 function App() {
-  const { state, addTrackFromFile } = useProject();
+  const { state, addTrackFromFile, initializeAudio } = useProject();
   
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    // Initialize audio context on first interaction
+    initializeAudio();
     if (e.target.files) {
       Array.from(e.target.files).forEach(file => {
         addTrackFromFile(file);
@@ -18,7 +20,11 @@ function App() {
   };
 
   return (
-    <div className="flex flex-col h-screen w-full bg-bg-ink text-text-high overflow-hidden select-none">
+    <div 
+        className="flex flex-col h-screen w-full bg-bg-ink text-text-high overflow-hidden select-none"
+        onClick={() => initializeAudio()} // Global unlock attempt on any click
+        onTouchStart={() => initializeAudio()} // Global unlock attempt on any touch
+    >
       <Header />
       
       <main className="flex-1 flex flex-col overflow-hidden relative">
